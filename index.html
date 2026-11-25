@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>国内手游加速器 · 31 个可投包</title>
+<style>
+:root{--bg:#f5f6f8;--panel:#fff;--line:#e4e7eb;--ink:#1b1f24;--ink2:#5d6672;--ink3:#949ca6;--accent:#2b4a7d;--accent-bg:#eef2f8}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--bg);color:var(--ink);font:14px/1.55 -apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1080px;margin:0 auto;padding:34px 20px 60px}
+header{display:flex;align-items:flex-end;gap:16px;flex-wrap:wrap;margin-bottom:20px}
+h1{font-size:22px;margin:0;letter-spacing:-.3px;font-weight:650}
+.sub{color:var(--ink2);font-size:13px;margin:0 0 2px}
+.sub b{color:var(--ink);font-weight:600}
+.actions{margin-left:auto;display:flex;gap:8px}
+.btn{border:1px solid var(--line);background:var(--panel);color:var(--ink2);padding:8px 14px;border-radius:9px;font:inherit;font-size:13px;cursor:pointer;transition:.14s;white-space:nowrap}
+.btn:hover{border-color:#c8d0da;color:var(--ink)}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+.btn.primary:hover{background:#24406c}
+.scroll{background:var(--panel);border:1px solid var(--line);border-radius:12px;overflow:auto}
+table{width:100%;border-collapse:collapse;font-size:13.5px}
+thead th{position:sticky;top:0;background:#fafbfc;text-align:left;font-weight:600;font-size:12px;color:var(--ink2);padding:11px 14px;border-bottom:1px solid var(--line);white-space:nowrap}
+tbody td{padding:11px 14px;border-bottom:1px solid #f0f2f4;vertical-align:middle}
+tbody tr:last-child td{border-bottom:0}
+tbody tr:hover{background:#fafbfd}
+td.idx{color:var(--ink3);font-size:12px;text-align:right;font-variant-numeric:tabular-nums;width:44px}
+td.name{font-weight:500}
+td.num{font-variant-numeric:tabular-nums;color:var(--ink2);font-size:12.5px;white-space:nowrap}
+td.seller{color:var(--ink3);font-size:12.5px;max-width:280px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.copy{font-family:ui-monospace,SFMono-Regular,"SF Mono",Menlo,monospace;font-size:12.5px;color:var(--ink2);background:none;border:0;padding:2px 5px;margin:-2px -5px;cursor:pointer;border-radius:5px;transition:.12s;white-space:nowrap}
+.copy:hover{background:var(--accent-bg);color:var(--accent)}
+footer{margin-top:18px;color:var(--ink3);font-size:12.5px;line-height:1.75}
+footer b{color:var(--ink2);font-weight:600}
+#toast{position:fixed;left:50%;bottom:34px;transform:translate(-50%,14px);background:#1b1f24;color:#fff;padding:9px 18px;border-radius:9px;font-size:13px;opacity:0;pointer-events:none;transition:.22s;z-index:50}
+#toast.on{opacity:1;transform:translate(-50%,0)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div>
+      <h1>国内手游加速器 · 可投包</h1>
+      <p class="sub">中国区 App Store <b>31</b> 个 · 面向国内手游玩家的专业加速器 · 数据抓取 2026-11-25</p>
+    </div>
+    <div class="actions">
+      <button class="btn" id="copyAll">复制全部 bundleId</button>
+      <button class="btn primary" id="csv">导出 CSV</button>
+    </div>
+  </header>
+
+  <div class="scroll">
+    <table>
+      <thead><tr><th class="idx">#</th><th>App 名称</th><th>App Store ID</th><th>bundleId</th><th>开发者</th></tr></thead>
+      <tbody id="tbody"></tbody>
+    </table>
+  </div>
+
+  <footer>
+    <b>排序</b>　按 App Store ID 从旧到新 —— 前面的（13xx / 14xx / 15xx）是口碑型老包，末尾（67xx）多为 2025 年买量型新包，人群更脏。<br>
+    <b>用法</b>　点 bundleId 直接复制；下游按 bundleId 或 App Store ID 匹配媒体库，两列都给了，以对方字段为准。
+  </footer>
+</div>
+<div id="toast"></div>
+<script>
+const DATA = [{"name": "迅游加速器 - 全球游戏网络加速助手", "aid": "1032660607", "bid": "com.subao.GameMaster", "seller": "Sichuan Subao Network Technology Co., Ltd.", "idx": 1}, {"name": "玲珑加速器 - 畅玩全球手游", "aid": "1246090490", "bid": "com.lonlife.l3game.ios", "seller": "Zhengzhou Longling One Network and Technology Co., Ltd.", "idx": 2}, {"name": "UU加速器-不止快 还很稳", "aid": "1319788668", "bid": "com.netease.cnuu", "seller": "Hangzhou Bobo Technology Co Ltd", "idx": 3}, {"name": "奇游加速器 - 全球游戏畅玩", "aid": "1395152179", "bid": "com.qeeyou.MobileGameAccelerator", "seller": "Chengdu Junyun Technology Co., Ltd.", "idx": 4}, {"name": "海豚加速器-热门游戏无需会员", "aid": "1437215395", "bid": "com.htjsq.accelerator", "seller": "Chengdu Chaoyoumao Technology Co.,Ltd", "idx": 5}, {"name": "腾讯手游加速器-王者三角洲和平加速语音辅助", "aid": "1441393867", "bid": "com.tencent.cmocmna", "seller": "Tencent Technology (Shenzhen) Company Limited", "idx": 6}, {"name": "小黑盒加速器", "aid": "1450920208", "bid": "com.max.MaxAccelerator", "seller": "Qingfeng(Beijing)Technology Co., Ltd.", "idx": 7}, {"name": "biubiu加速器- 全球手游专业加速器", "aid": "1452958918", "bid": "com.njh.biubiu.cn", "seller": "GuangZhou NingJingHai Technology Co., Ltd.", "idx": 8}, {"name": "灵缇游戏加速器 - 主机游戏&手机游戏全支持", "aid": "1492025342", "bid": "io.LingtiNS.ios", "seller": "Suzhou Ruilisi Technology Co.,Ltd", "idx": 9}, {"name": "AK游戏加速器-全球网络加速助手", "aid": "1502957027", "bid": "com.muxing.zy", "seller": "Sichuan Jinyou Network Technology Co.,Ltd", "idx": 10}, {"name": "快游加速器-全球手游专业加速器", "aid": "1539884815", "bid": "com.youfang.faster", "seller": "Xuzhou Youfang Network Technology Co., Ltd.", "idx": 11}, {"name": "CC加速器-全球手游专业加速器", "aid": "1541579924", "bid": "cn.ccspeed", "seller": "Xiamen Weihu Network Technology Co., Ltd.", "idx": 12}, {"name": "月轮手游加速器", "aid": "1541991510", "bid": "com.yuelun.accvpn", "seller": "Xiamen Yuelun Network Technology Co., Ltd.", "idx": 13}, {"name": "钛星人加速器-畅玩热门游戏", "aid": "1545098872", "bid": "com.taixingren.accelerator", "seller": "Sichun Jixun Network Technology Co., Ltd.", "idx": 14}, {"name": "BB加速 -全球手游专业加速器", "aid": "1563203761", "bid": "com.yssyjsq.yswl", "seller": "Sichuan Micro - Business Consulting Co., Ltd", "idx": 15}, {"name": "OurPlay游戏加速器-国际服手游加速", "aid": "1570752241", "bid": "com.penghuee.ourplay", "seller": "Shanghai Perfect Technology Co., Ltd.", "idx": 16}, {"name": "游帮帮加速器-全球游戏专业网络加速助手", "aid": "1575660143", "bid": "com.baidu.ybbc", "seller": "Beijing Baidu Netcom Science & Technology Co.,Ltd", "idx": 17}, {"name": "风喵加速器-全球手游专业加速器", "aid": "1587643389", "bid": "com.stnts.fmspeed", "seller": "Hubei Shengtian Network Technology Co.,Ltd.", "idx": 18}, {"name": "雷神加速器-上亿玩家加速首选", "aid": "1613506145", "bid": "com.aolafu.leishen", "seller": "Wuhan Olaf Network Technology Co., Ltd", "idx": 19}, {"name": "快乐游加速器", "aid": "1616882391", "bid": "com.xingkongsoft.klyouspeed", "seller": "Xi an Xingkong Hudong Software Development Co., Ltd.", "idx": 20}, {"name": "蓝草莓手游加速器", "aid": "1658951981", "bid": "com.lancaomei.mgameacc", "seller": "Xiamen Blue Strawberry Technology Co., Ltd", "idx": 21}, {"name": "GoLink手游加速器-全球手游主机游戏一键加速", "aid": "6444102699", "bid": "com.shengjun.gameSpeed", "seller": "Shanghai Shengjun Information Technology Co., Ltd.", "idx": 22}, {"name": "扇贝手游加速器—全球手游一键加速", "aid": "6450728384", "bid": "com.ky.shanbei", "seller": "Beijing Kaiyue Technology Company Limited", "idx": 23}, {"name": "迅猛兔加速器-无会员加速器", "aid": "6459304731", "bid": "com.xunmengtu.turboBunny", "seller": "Sichuan jutuihuijian Information Technology Co., Ltd", "idx": 24}, {"name": "外星仔加速器-无会员加速器", "aid": "6470742610", "bid": "com.etalien.booster.mobile", "seller": "XYZFUN (Shanghai) Intelligent Technology Co., Ltd.", "idx": 25}, {"name": "TM手游加速器-全球游戏畅玩", "aid": "6475158972", "bid": "com.TMSpeed.Lightning", "seller": "Sichuan Jingcheng Zhida Network Technology Co.Ltd", "idx": 26}, {"name": "海豚加速器极速版-看广告无限加速", "aid": "6478374296", "bid": "com.qulian.GIMobileGameAccelerator", "seller": "Chengdu Chaoyoumao Technology Co.,Ltd", "idx": 27}, {"name": "给梨加速器-无会员加速器", "aid": "6738338981", "bid": "com.xunlei.xlacc", "seller": "Wuhan Lianli Technology Co., Ltd.", "idx": 28}, {"name": "火箭加速-全球手游专业加速器", "aid": "6742934924", "bid": "com.xgost.rocket", "seller": "Qingdao XiaoGuo Technology Co.,Ltd", "idx": 29}, {"name": "轻蜂游戏加速器-国服/海外服游戏网络加速器", "aid": "6755078123", "bid": "com.zouqi.qingfenggame", "seller": "Going Network Technology Co., Ltd.", "idx": 30}, {"name": "神灯加速器", "aid": "6755799316", "bid": "com.magiclampcloud.accel", "seller": "Anhui Xiangyu Network Technology Co., Ltd", "idx": 31}];
+const esc = s => String(s).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+document.getElementById("tbody").innerHTML = DATA.map(d => `
+  <tr>
+    <td class="idx">${d.idx}</td>
+    <td class="name">${esc(d.name)}</td>
+    <td class="num">${d.aid}</td>
+    <td><button class="copy" data-v="${d.bid}">${esc(d.bid)}</button></td>
+    <td class="seller" title="${esc(d.seller)}">${esc(d.seller)}</td>
+  </tr>`).join("");
+
+let t;
+function toast(m){const el=document.getElementById("toast");el.textContent=m;el.classList.add("on");clearTimeout(t);t=setTimeout(()=>el.classList.remove("on"),1600);}
+document.getElementById("tbody").addEventListener("click", e=>{
+  const b=e.target.closest(".copy"); if(!b) return;
+  navigator.clipboard.writeText(b.dataset.v).then(()=>toast("已复制 "+b.dataset.v));
+});
+document.getElementById("copyAll").addEventListener("click", ()=>{
+  const ids=DATA.map(d=>d.bid);
+  navigator.clipboard.writeText(ids.join("\n")).then(()=>toast("已复制 "+ids.length+" 个 bundleId"));
+});
+document.getElementById("csv").addEventListener("click", ()=>{
+  const lines=['"App名称","AppStoreID","bundleId","开发者"'].concat(
+    DATA.map(d=>[d.name,d.aid,d.bid,d.seller].map(v=>'"'+String(v).replace(/"/g,'""')+'"').join(",")));
+  const blob=new Blob(["\ufeff"+lines.join("\n")],{type:"text/csv;charset=utf-8"});
+  const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="国内手游加速器_可投包.csv";a.click();
+  toast("CSV 已导出");
+});
+</script>
+</body>
+</html>
